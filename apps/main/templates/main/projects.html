@@ -1,0 +1,55 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Projects{% endblock %}
+
+{% block style %}
+
+  <link rel="stylesheet" href="static/main/css/projects.css">
+
+{% endblock %}
+
+{% block content %}
+
+  <div>
+    <a class="btn red" href="/projects/new">New Project</a>
+    <a class="btn blue" href="/projects/listed">List</a>
+  </div>
+
+  <h2 class="center">Top Projects</h2>
+
+  <div class="projects">
+
+    {% for listing in projects %}
+      {% if listing.visible %}
+      <div class="project">
+        <div class="title">
+          {{ listing.project.title }}
+        </div>
+        <div class="content">
+          {% if listing.project.media|length > 0 %}
+          <div class="video">
+
+          </div>
+          <div class="screenshots"></div>
+          {% endif %}
+          <div class="description">
+            <span class="title">summary</span>
+            <div>{{ listing.project.description }}</div>
+            <span class="title">work</span>
+            <div>{{ listing.project.work }}</div>
+            <span class="title">info</span>
+            <div>
+              {{ listing.project.info }}
+            </div>
+          </div>
+        </div>
+        <!-- <div class="links">
+
+        </div> -->
+      </div>
+      {% endif %}
+    {% endfor %}
+
+  </div>
+
+{% endblock %}

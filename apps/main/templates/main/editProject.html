@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Edit Project{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="/static/main/css/input.css">
+{% endblock %}
+
+{% block content %}
+
+  <h1>Edit Project</h1>
+
+  <form action="{% url 'updateProject' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="project" value="{{ project.id }}">
+
+    <label for="title">Title</label>
+    <input type="text" name="title" value="{{ project.title }}">
+
+    <label for="description">Summary</label>
+    <textarea name="description">{{ project.description }}</textarea>
+
+    <label for="work">Work</label>
+    <textarea name="work">{{ project.work }}</textarea>
+
+    <label for="info">Info</label>
+    <textarea name="info">{{ project.info }}</textarea>
+
+    <input class="btn red" type="submit" value="Update">
+
+  </form>
+
+{% endblock %}

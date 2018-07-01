@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Project List{% endblock %}
+
+{% block content %}
+
+  <a class="btn red" href="/projects/new">New Project</a>
+  <a class="btn blue" href="/projects">Display</a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Order</th>
+        <th>Visible</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for listing in projects %}
+        <tr>
+          <td>{{ listing.project.title }}</td>
+          <td>
+            <span class="btn">{{ listing.order }}</span>
+            <a class="btn" href="/projects/{{ listing.project.id }}/edit/order/up"><i class="material-icons">keyboard_arrow_up</i></a>
+            <a class="btn" href="/projects/{{ listing.project.id }}/edit/order/down"><i class="material-icons">keyboard_arrow_down</i></a>
+          </td>
+          <td>
+            {% if listing.visible %}
+              <a class="btn red" href="/projects/{{ listing.project.id }}/edit/visible/false">Hide</a>
+            {% else %}
+              <a class="btn red" href="/projects/{{ listing.project.id }}/edit/visible/true">Show</a>
+            {% endif %}
+          </td>
+          <td>
+            <a class="btn red" href="/projects/{{ listing.project.id }}/delete">Delete</a>
+            <a class="btn blue" href="/projects/{{ listing.project.id }}/edit">Edit</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

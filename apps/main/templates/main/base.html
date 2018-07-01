@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Chris Luttio – {% block title %}Front{% endblock %}</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/css/base.css' %}">
+    {% block style %}{% endblock %}
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav">
+        {% block nav %}
+        <ul>
+          <li><a href="">front</a></li>
+          <li><a href="">about</a></li>
+          <li><a href="">contact</a></li>
+          <li><a href="">experience</a></li>
+          <li><a href="/projects">projects</a></li>
+          <li><a href="">resume</a></li>
+        </ul>
+        {% endblock %}
+      </div>
+      <div class="main">
+        {% block content %}
+        {% endblock %}
+      </div>
+    </div>
+  </body>
+</html>

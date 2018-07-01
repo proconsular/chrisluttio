@@ -1,0 +1,26 @@
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.nav {
+  margin: auto;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.nav ul li {
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.main {
+  padding: 8px;
+  margin-top: 16px;
+}
