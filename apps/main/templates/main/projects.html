@@ -26,12 +26,21 @@
           {{ listing.project.title }}
         </div>
         <div class="content">
-          {% if listing.project.media|length > 0 %}
-          <div class="video">
-
+          {% for media in listing.project.media.all %}
+            {% if media.type == "video" %}
+            <video preload="none" controls>
+              <source src="/media/{{ media.url }}" type="video/mp4"/>
+              Unsupported.
+            </video>
+            {% endif %}
+          {% endfor %}
+          <div class="screenshots">
+            {% for media in listing.project.media.all %}
+              {% if media.type == "image" %}
+                <img src="/media/{{ media.url }}">
+              {% endif %}
+            {% endfor %}
           </div>
-          <div class="screenshots"></div>
-          {% endif %}
           <div class="description">
             <span class="title">summary</span>
             <div>{{ listing.project.description }}</div>

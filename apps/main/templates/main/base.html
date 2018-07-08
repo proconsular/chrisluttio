@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.7.3/video-js.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.7.3/video.js"></script>
+
     {% load static %}
     <link rel="stylesheet" href="{% static 'main/css/base.css' %}">
     {% block style %}{% endblock %}
@@ -32,5 +35,6 @@
         {% endblock %}
       </div>
     </div>
+    {% block script %}{% endblock %}
   </body>
 </html>

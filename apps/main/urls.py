@@ -11,5 +11,8 @@ urlpatterns = [
     url(r'^projects/(\d+)/edit/order/([a-z]+)$', views.editProjectOrder),
     url(r'^projects/(\d+)/edit/visible/([a-z]+)$', views.editProjectVisible),
     url(r'^projects/(\d+)/edit$', views.showEditProjectForm),
+    url(r'^projects/(\d+)/delete$', views.showProjectConfirmDelete),
+    url(r'^projects/(\d+)/remove$', views.removeProject),
+    url(r'^media/(\d+)/delete$', views.removeMedia),
     path('projects/update', views.updateProject, name="updateProject"),
 ]

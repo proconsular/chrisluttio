@@ -6,11 +6,15 @@
 <link rel="stylesheet" href="/static/main/css/input.css">
 {% endblock %}
 
+{% block script %}
+<script src="/static/main/scripts/newProject.js" charset="utf-8"></script>
+{% endblock %}
+
 {% block content %}
 
   <h1>Add a Project</h1>
 
-  <form action="{% url 'createProject' %}" method="post">
+  <form action="{% url 'createProject' %}" enctype="multipart/form-data" method="post">
     {% csrf_token %}
 
     <label for="title">Title</label>
@@ -24,6 +28,14 @@
 
     <label for="info">Info</label>
     <textarea name="info"></textarea>
+
+    <label for="video">Video</label>
+    <input type="file" name="video">
+
+    <label>Photos</label>
+    <div class="photos">
+      <a class="add_photo" href="#"><i class="material-icons">add</i></a>
+    </div>
 
     <input class="btn red" type="submit" value="Create">
 

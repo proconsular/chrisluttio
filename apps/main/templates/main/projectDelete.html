@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Delete Project{% endblock %}
+
+{% block content %}
+
+<h1 class="center">Are you sure?</h1>
+
+<h4 class="center">Are you sure you want to delete {{ project.title }}?</h4>
+
+<div class="divider"></div>
+
+<div class="center col-12m">
+  <a class="btn blue" href="{% url 'listed_projects' %}">Cancel</a>
+  <a class="btn red" href="/projects/{{ project.id }}/remove">Delete</a>
+</div>
+
+{% endblock %}

@@ -1,4 +1,8 @@
 
+body {
+  margin-bottom: 50px;
+}
+
 textarea {
   height: 200px;
   margin-top: 16px;
@@ -10,4 +14,34 @@ textarea {
 
 textarea:focus {
   outline: none;
+}
+
+input[type="submit"] {
+  display: block;
+  margin-top: 20px;
+}
+
+input[type="file"] {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+video {
+  width: 250px;
+}
+
+.video {
+  display: inline-block;
+}
+
+.image {
+  display: inline-block;
+  width: 250px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+img {
+  width: 100%;
 }

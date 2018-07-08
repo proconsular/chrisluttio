@@ -1,6 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from .models import *
+from django.core.files import File
+import os
 
 def showIndex(request):
     return render(request, 'main/index.html')
@@ -29,7 +31,25 @@ def createProject(request):
         project.info = request.POST['info']
         project.save()
         ListedProject.objects.create(project_id=project.id)
+
+        if 'video' in request.FILES:
+            video = request.FILES['video']
+            handle_uploaded_file(project.id, "video", video)
+            Media.objects.create(project_id=project.id, name=video.name, type="video", url="global/video/" + str(project.id) + "/" + video.name)
+
+        if 'photo' in request.FILES:
+            for file in request.FILES.getlist('photo'):
+                handle_uploaded_file(project.id, "images", file)
+                Media.objects.create(project_id=project.id, name=file.name, type="image", url="global/images/" + str(project.id) + "/" + file.name)
+
     return redirect(reverse("listed_projects"))
+
+def handle_uploaded_file(project_id, folder, file):
+    path = 'media/global/' + folder + '/' + str(project_id) + "/"
+    os.makedirs(path, exist_ok=True)
+    with open(path + file.name, 'wb+') as destination:
+        for chunk in file.chunks():
+            destination.write(chunk)
 
 def editProjectOrder(request, project_id, direction):
     project = Project.objects.get(id=project_id)
@@ -63,4 +83,40 @@ def updateProject(request):
         project.work = request.POST['work']
         project.info = request.POST['info']
         project.save()
+
+        if 'video' in request.FILES:
+            for video in request.FILES.getlist('video'):
+                handle_uploaded_file(project.id, "video", video)
+                Media.objects.create(project_id=project.id, name=video.name, type="video", url="global/video/" + str(project.id) + "/" + video.name)
+
+        print(request.POST)
+        if 'photo' in request.FILES:
+            for file in request.FILES.getlist('photo'):
+                print(file)
+                handle_uploaded_file(project.id, "images", file)
+                Media.objects.create(project_id=project.id, name=file.name, type="image", url="global/images/" + str(project.id) + "/" + file.name)
+    
+    return redirect("/projects/" + request.POST['project'] + "/edit")
+
+def showProjectConfirmDelete(request, project_id):
+    context = {
+        'project': Project.objects.get(id=project_id)
+    }
+    return render(request, 'main/projectDelete.html', context)
+
+def removeProject(request, project_id):
+    project = Project.objects.get(id=project_id)
+    for media in project.media.all():
+        deleteMedia(media)
+    project.listing.delete()
+    project.delete()
     return redirect(reverse("listed_projects"))
+
+def deleteMedia(media):
+    os.remove("media/" + media.url)
+    media.delete()
+
+def removeMedia(request, media_id):
+    media = Media.objects.get(id=media_id)
+    deleteMedia(media)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

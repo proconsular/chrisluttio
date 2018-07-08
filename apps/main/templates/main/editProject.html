@@ -6,11 +6,17 @@
 <link rel="stylesheet" href="/static/main/css/input.css">
 {% endblock %}
 
+{% block script %}
+<script src="/static/main/scripts/editProject.js" charset="utf-8"></script>
+{% endblock %}
+
 {% block content %}
+
+  <a href="/projects/listed">Back</a>
 
   <h1>Edit Project</h1>
 
-  <form action="{% url 'updateProject' %}" method="post">
+  <form action="{% url 'updateProject' %}" enctype="multipart/form-data" method="post">
     {% csrf_token %}
     <input type="hidden" name="project" value="{{ project.id }}">
 
@@ -25,6 +31,39 @@
 
     <label for="info">Info</label>
     <textarea name="info">{{ project.info }}</textarea>
+
+    <div class="media">
+      <label>Videos</label>
+      <div class="videos">
+        {% for media in project.media.all %}
+          {% if media.type == "video" %}
+            <div class="video">
+              <video controls>
+                <source src="/media/{{ media.url }}" type="video/mp4">
+              </video>
+              <div class="options">
+                <a href="/media/{{ media.id }}/delete">delete</a>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        <a class="add_video" href="#"><i class="material-icons">add</i></a>
+      </div>
+      <label>Photos</label>
+      <div class="photos">
+        {% for media in project.media.all %}
+          {% if media.type == "image" %}
+            <div class="image">
+              <img src="/media/{{ media.url }}">
+              <div class="options">
+                <a href="/media/{{ media.id }}/delete">delete</a>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        <a class="add_photo" href="#"><i class="material-icons">add</i></a>
+      </div>
+    </div>
 
     <input class="btn red" type="submit" value="Update">
 
