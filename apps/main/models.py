@@ -5,9 +5,15 @@ class Admin(models.Model):
 
 class Project(models.Model):
     title = models.CharField(max_length=255)
+    role = models.CharField(max_length=255)
     description = models.TextField()
     work = models.TextField()
     info = models.TextField()
+    
+class Period(models.Model):
+    fromDate = models.DateTimeField()
+    toDate = models.DateTimeField()
+    project = models.OneToOneField(Project, related_name="period", on_delete=models.CASCADE)
 
 class ListedProject(models.Model):
     order = models.IntegerField(default=0)
@@ -19,3 +25,7 @@ class Media(models.Model):
     url = models.CharField(max_length=255)
     type = models.CharField(max_length=255)
     project = models.ForeignKey(Project, related_name="media", on_delete=models.CASCADE)
+
+class Technology(models.Model):
+    name = models.CharField(max_length=255)
+    project = models.ForeignKey(Project, related_name="technologies", on_delete=models.CASCADE)

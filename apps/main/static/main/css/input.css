@@ -45,3 +45,7 @@ video {
 img {
   width: 100%;
 }
+
+.technologies span {
+  vertical-align: top;
+}

@@ -6,64 +6,50 @@
   margin-bottom: 64px;
 }
 
-.project {
-  padding: 8px;
-}
-
-.project .title {
-  text-align: center;
-  font-size: 36px;
-  padding-top: 8px;
-  padding-bottom: 24px;
-}
-
-.description .title {
-  font-size: 16px;
-  font-weight: bold;
+.date div {
   display: inline-block;
-  padding: 0;
-  text-transform: uppercase;
-}
-
-.description .title:not(:first-of-type) {
-  margin-top: 20px;
-}
-
-video {
-  width: 100%;
 }
 
 img {
-  width: 25%;
+  width: 100%;
 }
 
-.content {
-  width: 700px;
-  margin: auto;
+.card {
+  color: #eee;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 1);
 }
 
-.video {
+.card-content {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.tech {
+  background:rgba(100, 100, 100, 0.4); 
+  border-radius: 2px;
+  padding-left: 6px;
+  padding-right: 6px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  display: inline-block;
+}
+
+.card-title {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.date {
+  margin-top: 4px;
+}
+
+/* .project {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 8px;
   border: 1px solid black;
-  height: 360px;
-  margin-bottom: 24px;
+  background: #aaa;
 }
 
-.screenshots {
-  border: 1px solid black;
-  height: 125px;
-  margin-bottom: 24px;
-}
-
-.description {
-  padding-bottom: 16px;
-  text-align: justify;
-  margin-bottom: 8px;
-}
-
-.links {
-  border: 1px solid black;
-  height: 50px;
-  width: 500px;
-  margin: auto;
-  margin-bottom: 24px;
-}
+.project div {
+  display: inline-block;
+} */

@@ -1,0 +1,48 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Projects{% endblock %}
+
+{% block style %}
+
+  <link rel="stylesheet" href="/static/main/css/projectView.css">
+
+{% endblock %}
+
+{% block content %}
+
+<a href="/projects">Back</a>
+
+<div class="project">
+    <div class="title">
+        {{ project.title }}
+    </div>
+    <div class="content">
+        {% for media in project.media.all %}
+        {% if media.type == "video" %}
+        <video preload="none" controls>
+            <source src="/media/{{ media.url }}" type="video/mp4"/>
+            Unsupported.
+        </video>
+        {% endif %}
+        {% endfor %}
+        <div class="screenshots">
+        {% for media in project.media.all %}
+            {% if media.type == "image" %}
+            <img src="/media/{{ media.url }}">
+            {% endif %}
+        {% endfor %}
+        </div>
+        <div class="description">
+        <span class="title">summary</span>
+        <div>{{ project.description }}</div>
+        <span class="title">work</span>
+        <div>{{ project.work }}</div>
+        <span class="title">info</span>
+        <div>
+            {{ project.info }}
+        </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

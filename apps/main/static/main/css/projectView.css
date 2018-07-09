@@ -1,0 +1,58 @@
+
+.project {
+    width: 900px;
+    margin: auto;
+}
+
+.project div.title {
+    text-decoration: underline;
+    font-size: 48px;
+    padding-bottom: 12px;
+    text-align: center;
+}
+
+.description .title {
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-block;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+.description .title:not(:first-of-type) {
+margin-top: 20px;
+}
+
+video {
+    width: 100%;
+    background: black;
+}
+
+img {
+width: 24.5%;
+margin-left: auto;
+margin-right: auto;
+}
+
+.content {
+width: 700px;
+margin: auto;
+}
+
+.video {
+border: 1px solid black;
+height: 360px;
+margin-bottom: 24px;
+}
+
+.screenshots {
+margin: auto;
+display: block;
+margin-bottom: 24px;
+}
+
+.description {
+padding-bottom: 16px;
+text-align: justify;
+margin-bottom: 8px;
+}
